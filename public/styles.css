@@ -1,0 +1,148 @@
+:root {
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #111318;
+  background: #eef1f4;
+  font-synthesis: none;
+  --accent: #00aef0;
+  --accent-dark: #008ac0;
+  --ink: #111318;
+  --muted: #66717f;
+  --border: rgba(17, 19, 24, 0.09);
+  --glass: rgba(255,255,255,0.91);
+}
+
+* { box-sizing: border-box; }
+html, body, .app-shell { width: 100%; height: 100%; margin: 0; overflow: hidden; }
+button { font: inherit; }
+
+#map { position: absolute; inset: 0; }
+.maplibregl-ctrl-bottom-left { display: none; }
+.maplibregl-ctrl-bottom-right { opacity: .72; transform: scale(.85); transform-origin: right bottom; }
+
+.glass {
+  background: var(--glass);
+  border: 1px solid rgba(255,255,255,.75);
+  box-shadow: 0 16px 46px rgba(20, 32, 47, .14);
+  backdrop-filter: blur(22px) saturate(1.15);
+  -webkit-backdrop-filter: blur(22px) saturate(1.15);
+}
+
+.topbar {
+  position: absolute;
+  z-index: 5;
+  top: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(720px, calc(100% - 32px));
+  min-height: 66px;
+  border-radius: 22px;
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.brand-row { display: flex; align-items: center; gap: 11px; min-width: 0; }
+.brand-row strong { display: block; font-size: 15px; letter-spacing: -.01em; }
+.brand-row span { display: block; color: var(--muted); font-size: 12px; margin-top: 2px; }
+.brand-mark {
+  width: 40px; height: 40px; border-radius: 14px; display: grid; place-items: center;
+  background: #111318; color: white; font-weight: 800; font-size: 18px;
+}
+.engine-badge {
+  flex: none;
+  font-size: 11px;
+  font-weight: 750;
+  color: #2b3440;
+  background: #eef2f5;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 8px 10px;
+}
+.engine-badge.live { background: #e8f8ee; color: #187642; }
+.engine-badge.fallback { background: #fff3d9; color: #875400; }
+
+.route-sheet {
+  position: absolute;
+  z-index: 5;
+  left: 50%; bottom: 18px;
+  transform: translateX(-50%);
+  width: min(720px, calc(100% - 32px));
+  border-radius: 28px;
+  padding: 12px 18px 17px;
+}
+.sheet-handle { width: 44px; height: 5px; border-radius: 99px; margin: 0 auto 12px; background: #d6dbe1; }
+.trip-title-row { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
+.eyebrow { display: block; color: #77818d; font-size: 10px; font-weight: 850; letter-spacing: .1em; margin-bottom: 4px; }
+h1 { margin: 0; font-size: clamp(20px, 3.4vw, 28px); line-height: 1.06; letter-spacing: -.04em; }
+.trip-title-row p { margin: 5px 0 0; color: var(--muted); font-size: 13px; }
+.icon-button, .map-button {
+  border: 0; color: var(--ink); cursor: pointer; background: white; box-shadow: 0 8px 22px rgba(20,32,47,.12);
+}
+.icon-button { width: 42px; height: 42px; border-radius: 14px; font-size: 21px; }
+
+.route-options { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 15px 0 12px; }
+.route-option {
+  position: relative;
+  text-align: left;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background: rgba(248,250,252,.9);
+  padding: 13px 14px;
+  cursor: pointer;
+  transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+}
+.route-option:hover { transform: translateY(-1px); }
+.route-option.selected {
+  border-color: color-mix(in srgb, var(--accent), transparent 45%);
+  box-shadow: inset 0 0 0 1px rgba(0,174,240,.18), 0 8px 24px rgba(0,174,240,.10);
+  background: white;
+}
+.route-option .label { display: flex; align-items: center; justify-content: space-between; gap: 6px; color: var(--muted); font-size: 11px; font-weight: 760; text-transform: uppercase; letter-spacing: .04em; }
+.route-option .time { font-size: 24px; line-height: 1; font-weight: 820; letter-spacing: -.04em; margin-top: 8px; }
+.route-option .meta { color: var(--muted); font-size: 12px; margin-top: 5px; }
+.route-swatch { width: 28px; height: 5px; border-radius: 99px; background: #aeb8c2; }
+.route-option.selected .route-swatch { background: var(--accent); }
+
+.demo-actions { display: grid; grid-template-columns: 1fr auto; gap: 9px; }
+.primary-button, .secondary-button { border: 0; border-radius: 16px; min-height: 48px; cursor: pointer; font-weight: 780; }
+.primary-button { background: #111318; color: white; padding: 0 18px; }
+.primary-button:hover { background: #20242b; }
+.secondary-button { background: #eef2f5; color: #2d3743; padding: 0 15px; }
+.demo-note { display: flex; justify-content: space-between; gap: 12px; margin-top: 10px; color: #7a8592; font-size: 11px; }
+.demo-note span:last-child { text-align: right; }
+
+.instruction-card {
+  position: absolute; z-index: 6; top: 100px; left: 50%; transform: translateX(-50%);
+  width: min(520px, calc(100% - 48px)); border-radius: 20px; padding: 12px 15px;
+  display: flex; gap: 12px; align-items: center;
+}
+.instruction-card.hidden { display: none; }
+.turn-icon { width: 46px; height: 46px; flex: none; display: grid; place-items: center; border-radius: 14px; background: #111318; color: white; font-size: 23px; }
+.instruction-card strong { display: block; font-size: 15px; }
+.recenter { position: absolute; z-index: 4; right: 18px; bottom: 320px; width: 46px; height: 46px; border-radius: 16px; font-size: 25px; }
+
+.destination-pin {
+  width: 24px; height: 24px; border-radius: 50% 50% 50% 0; transform: rotate(-45deg);
+  background: #111318; border: 3px solid white; box-shadow: 0 6px 14px rgba(0,0,0,.24);
+}
+.start-pin {
+  width: 22px; height: 22px; border-radius: 50%; background: white; border: 6px solid var(--accent); box-shadow: 0 4px 12px rgba(0,0,0,.18);
+}
+.car-puck {
+  width: 28px; height: 28px; border-radius: 50%; background: var(--accent); border: 4px solid white;
+  box-shadow: 0 4px 14px rgba(0,94,131,.34); position: relative;
+}
+.car-puck::after { content: '➤'; color: white; position: absolute; inset: 0; display: grid; place-items: center; font-size: 12px; }
+
+@media (max-width: 620px) {
+  .topbar { top: 10px; border-radius: 19px; }
+  .route-sheet { bottom: 10px; width: calc(100% - 20px); border-radius: 24px; padding-inline: 14px; }
+  .route-options { gap: 8px; }
+  .route-option { padding: 12px; }
+  .route-option .time { font-size: 21px; }
+  .trip-title-row p { max-width: 255px; }
+  .demo-note { font-size: 10px; }
+  .recenter { bottom: 345px; right: 12px; }
+}

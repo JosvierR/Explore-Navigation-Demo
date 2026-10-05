@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#ffffff" />
+    <title>Explore Navigation Demo</title>
+    <link rel="preconnect" href="https://unpkg.com" />
+    <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@^6.12.0/dist/maplibre-gl.css" />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <div id="map" aria-label="Navigation map"></div>
+
+      <header class="topbar glass">
+        <div class="brand-row">
+          <div class="brand-mark">E</div>
+          <div>
+            <strong>Explore Navigation</strong>
+            <span>Open-source routing demo</span>
+          </div>
+        </div>
+        <div id="engineBadge" class="engine-badge">Connecting…</div>
+      </header>
+
+      <section id="instructionCard" class="instruction-card glass hidden" aria-live="polite">
+        <div class="turn-icon">↗</div>
+        <div>
+          <span class="eyebrow">NEXT</span>
+          <strong id="instructionText">Continue on route</strong>
+        </div>
+      </section>
+
+      <button id="recenterButton" class="map-button recenter" aria-label="Recenter map">◎</button>
+
+      <section class="route-sheet glass">
+        <div class="sheet-handle"></div>
+        <div class="trip-title-row">
+          <div>
+            <span class="eyebrow">EXPLORE DEMO</span>
+            <h1>Brickell → South Pointe</h1>
+            <p>Fastest vs shortest using open map data.</p>
+          </div>
+          <button id="swapButton" class="icon-button" aria-label="Swap route">⇄</button>
+        </div>
+
+        <div id="routeOptions" class="route-options" aria-label="Route options"></div>
+
+        <div class="demo-actions">
+          <button id="startButton" class="primary-button">Start navigation demo</button>
+          <button id="resetButton" class="secondary-button">Reset</button>
+        </div>
+
+        <div class="demo-note">
+          <span>Tap the map to move the destination.</span>
+          <span id="routeStatus">Calculating routes…</span>
+        </div>
+      </section>
+    </main>
+
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>

@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#ffffff" />
+    <meta name="theme-color" content="#00AEFF" />
     <title>Explore Navigation Demo</title>
     <link rel="preconnect" href="https://unpkg.com" />
     <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@^6.12.0/dist/maplibre-gl.css" />
@@ -18,11 +18,28 @@
           <div class="brand-mark">E</div>
           <div>
             <strong>Explore Navigation</strong>
-            <span>Open-source routing demo</span>
+            <span>Routes, hotspots and simulated traffic</span>
           </div>
         </div>
-        <div id="engineBadge" class="engine-badge">Connecting…</div>
+        <div class="topbar-actions">
+          <div id="engineBadge" class="engine-badge">Connecting…</div>
+        </div>
       </header>
+
+      <section class="stories-shell">
+        <div class="stories-head glass">
+          <div>
+            <span class="eyebrow">EXPLORE HOTSPOTS</span>
+            <strong>Restaurants, parks and beaches near your route</strong>
+          </div>
+          <div class="category-legend" aria-label="Point of interest categories">
+            <span class="legend-pill beach">Beach</span>
+            <span class="legend-pill park">Park</span>
+            <span class="legend-pill restaurant">Food</span>
+          </div>
+        </div>
+        <div id="storyRail" class="story-rail" aria-label="Explore hotspot cards"></div>
+      </section>
 
       <section id="instructionCard" class="instruction-card glass hidden" aria-live="polite">
         <div class="turn-icon">↗</div>
@@ -39,21 +56,36 @@
         <div class="trip-title-row">
           <div>
             <span class="eyebrow">EXPLORE DEMO</span>
-            <h1>Brickell → South Pointe</h1>
-            <p>Fastest vs shortest using open map data.</p>
+            <h1 id="tripTitle">Brickell → South Pointe</h1>
+            <p>Tap the map or a hotspot card to move the destination.</p>
           </div>
           <button id="swapButton" class="icon-button" aria-label="Swap route">⇄</button>
+        </div>
+
+        <div class="summary-grid">
+          <div class="summary-card">
+            <span>Hotspots</span>
+            <strong id="hotspotCount">6 nearby</strong>
+          </div>
+          <div class="summary-card">
+            <span>Traffic</span>
+            <strong id="trafficSummary">Simulated moderate</strong>
+          </div>
+          <div class="summary-card">
+            <span>View</span>
+            <strong id="modeSummary">Explore style</strong>
+          </div>
         </div>
 
         <div id="routeOptions" class="route-options" aria-label="Route options"></div>
 
         <div class="demo-actions">
-          <button id="startButton" class="primary-button">Start navigation demo</button>
+          <button id="startButton" class="primary-button">Start smooth navigation</button>
           <button id="resetButton" class="secondary-button">Reset</button>
         </div>
 
         <div class="demo-note">
-          <span>Tap the map to move the destination.</span>
+          <span>Blue = fastest · Green = shortest</span>
           <span id="routeStatus">Calculating routes…</span>
         </div>
       </section>
